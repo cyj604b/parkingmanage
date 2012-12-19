@@ -42,4 +42,8 @@ public class ParkTest {
         assertEquals(car1, allCars.get(0));
         assertEquals(car2, allCars.get(1));
     }
+    @Test
+    public void testTakeCars(){
+
+    }
 }

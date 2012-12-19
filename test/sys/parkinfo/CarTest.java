@@ -23,6 +23,16 @@ public class CarTest {
         assertEquals(secondCarNumber, secondCar.getCarNumber());
         assertEquals(firstCarNumber, firstCar.getCarNumber());
 
+        final String thirdCarNumber = "J1111";
+        final String thirdOwnerId = "G1221F31";
+        Car thirdCar = new Car(thirdCarNumber, thirdOwnerId);
+        assertEquals(thirdCarNumber, thirdCar.getCarNumber());
+        assertEquals(thirdOwnerId, thirdCar.getOwnerId());
 
+        final String fourthCarNumber = "J2222";
+        final String fourthOwnerId = "GS1221F32";
+        Car fourthCar = new Car(fourthCarNumber, fourthOwnerId);
+        assertEquals(fourthCarNumber, fourthCar.getCarNumber());
+        assertEquals(fourthOwnerId, fourthCar.getOwnerId());
     }
 }

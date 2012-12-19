@@ -37,6 +37,10 @@ public class Park {
         cars.add(car);
     }
 
+    public void takeCar(Car car){
+        cars.remove(car);
+    }
+
     public List<Car> getAllCars(){
         return cars;
     }
