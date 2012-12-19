@@ -6,6 +6,8 @@ import org.junit.Test;
 import java.util.List;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 /**
  * Created with IntelliJ IDEA.
@@ -28,22 +30,43 @@ public class ParkTest {
     }
     @Test
     public void testAddCars(){
-        Car car1 = new Car("J8888");
-        park.addCar(car1);
+        Car car1 = new Car("J8888", "GS1221F31");
+        assertTrue(park.addCar(car1));
         assertEquals(1, park.getNumberOfCars());
         List<Car> allCars = park.getAllCars();
         assertEquals(1, allCars.size());
         assertEquals(car1, allCars.get(0));
 
-        Car car2 = new Car("J6666");
-        park.addCar(car2);
+        Car car2 = new Car("J6666", "GS1221F32");
+        assertTrue(park.addCar(car2));
         assertEquals(2, park.getNumberOfCars());
         assertEquals(2, allCars.size());
         assertEquals(car1, allCars.get(0));
         assertEquals(car2, allCars.get(1));
+
+        for(int i = 0; i < 18; i++){
+            Car car = new Car("J6666", " ");
+            park.addCar(car);
+        }
+        assertEquals(20, allCars.size());
+
+        Car car3 = new Car("J5555", "GS1221F33");
+        assertFalse(park.addCar(car3));
+        assertEquals(20, allCars.size());
     }
     @Test
     public void testTakeCars(){
-
+        Car car = new Car("J4444", "GS1221F34");
+        assertFalse(park.takeCar(car));
+        Car car1 = new Car("J4444", "GS1221F31");
+        assertFalse(park.takeCar(car1));
+        Car car2 = new Car("J7777", "GS1221F34");
+        assertFalse(park.takeCar(car2));
+        park.addCar(car);
+        assertEquals(1, park.getNumberOfCars());
+        assertFalse(park.takeCar(car1));
+        assertFalse(park.takeCar(car2));
+        assertTrue(park.takeCar(car));
+        assertEquals(0, park.getNumberOfCars());
     }
 }

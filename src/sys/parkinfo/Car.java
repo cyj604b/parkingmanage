@@ -20,6 +20,16 @@ public class Car {
         this.carNumber = carNumber;
         this.ownerId = ownerId;
     }
+
+    public String toString(){
+        StringBuilder buffer = new StringBuilder();
+
+        buffer.append(carNumber);
+        buffer.append(" ");
+        buffer.append(ownerId);
+
+        return buffer.toString();
+    }
     public String getCarNumber()
     {
         return carNumber;

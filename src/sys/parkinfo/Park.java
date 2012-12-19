@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class Park {
     private String parkNumber;
-    private int totalParkPlace;
+    private final int totalParkPlace;
     private List<Car> cars=new ArrayList<Car>();
 
     public Park(String parkNumber, int totalParkPlace)
@@ -33,12 +33,29 @@ public class Park {
         return cars.size();
     }
 
-    public void addCar(Car car){
-        cars.add(car);
+    public boolean addCar(Car car){
+        boolean reValue=true;
+        if(cars.size() >= totalParkPlace)
+        {
+            reValue=false;
+            System.out.println("停车场（" + parkNumber + "）已没有空位，车辆（"+car.toString()+"）停放失败！");
+        }else{
+            cars.add(car);
+        }
+        return reValue;
     }
 
-    public void takeCar(Car car){
-        cars.remove(car);
+    public boolean takeCar(Car car){
+        boolean reValue = false;
+        for(Car targetCar:cars)
+        {
+            if (car.toString().equals(targetCar.toString())){
+                cars.remove(targetCar);
+                reValue = true;
+                break;
+            }
+        }
+        return reValue;
     }
 
     public List<Car> getAllCars(){
