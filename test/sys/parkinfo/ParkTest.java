@@ -18,6 +18,7 @@ import static org.junit.Assert.assertTrue;
  */
 public class ParkTest {
     private Park park;
+    private static final double RATE_TOLERANCE = 0.0005;
     @Before
     public void setUp(){
         park = new Park("001", 20);
@@ -32,6 +33,7 @@ public class ParkTest {
     public void testAddCars(){
         Car car1 = new Car("J8888", "GS1221F31");
         assertTrue(park.addCar(car1));
+        assertEquals(0.95, park.getBlankRate(), RATE_TOLERANCE);
         assertEquals(1, park.getNumberOfCars());
         List<Car> allCars = park.getAllCars();
         assertEquals(1, allCars.size());
@@ -39,6 +41,7 @@ public class ParkTest {
 
         Car car2 = new Car("J6666", "GS1221F32");
         assertTrue(park.addCar(car2));
+        assertEquals(0.90, park.getBlankRate(), RATE_TOLERANCE);
         assertEquals(2, park.getNumberOfCars());
         assertEquals(2, allCars.size());
         assertEquals(car1, allCars.get(0));
@@ -49,6 +52,7 @@ public class ParkTest {
             park.addCar(car);
         }
         assertEquals(20, allCars.size());
+        assertEquals(0.0, park.getBlankRate(), RATE_TOLERANCE);
 
         Car car3 = new Car("J5555", "GS1221F33");
         assertFalse(park.addCar(car3));
@@ -63,10 +67,14 @@ public class ParkTest {
         Car car2 = new Car("J7777", "GS1221F34");
         assertFalse(park.takeCar(car2));
         park.addCar(car);
+        assertEquals(0.95, park.getBlankRate(), RATE_TOLERANCE);
         assertEquals(1, park.getNumberOfCars());
         assertFalse(park.takeCar(car1));
+        assertEquals(0.95, park.getBlankRate(), RATE_TOLERANCE);
         assertFalse(park.takeCar(car2));
+        assertEquals(0.95, park.getBlankRate(), RATE_TOLERANCE);
         assertTrue(park.takeCar(car));
+        assertEquals(1.0, park.getBlankRate(), RATE_TOLERANCE);
         assertEquals(0, park.getNumberOfCars());
     }
 }

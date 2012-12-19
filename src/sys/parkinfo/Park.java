@@ -61,4 +61,16 @@ public class Park {
     public List<Car> getAllCars(){
         return cars;
     }
+
+    public int getSurplusCars()
+    {
+        return totalParkPlace-cars.size();
+    }
+
+    public float getBlankRate()
+    {
+        int carsLeft=this.getSurplusCars();
+        float f1=carsLeft/(float)totalParkPlace;
+        return f1;
+    }
 }
