@@ -1,5 +1,8 @@
 package sys.parkinfo;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * Created with IntelliJ IDEA.
  * User: Administrator
@@ -10,6 +13,7 @@ package sys.parkinfo;
 public class Park {
     private String parkNumber;
     private int totalParkPlace;
+    private List<Car> cars=new ArrayList<Car>();
 
     public Park(String parkNumber, int totalParkPlace)
     {
@@ -23,5 +27,17 @@ public class Park {
 
     public int getTotalParkPlace() {
         return totalParkPlace;
+    }
+
+    public int getNumberOfCars() {
+        return cars.size();
+    }
+
+    public void addCar(Car car){
+        cars.add(car);
+    }
+
+    public List<Car> getAllCars(){
+        return cars;
     }
 }
